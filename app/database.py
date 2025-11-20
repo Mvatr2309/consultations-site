@@ -17,8 +17,16 @@ if settings.database_url.startswith("sqlite"):
     # Создаем родительскую директорию, если её нет
     if db_file.parent and not db_file.parent.exists():
         db_file.parent.mkdir(parents=True, exist_ok=True)
+    # Параметры подключения для SQLite
+    connect_args = {"check_same_thread": False}
+else:
+    # Для PostgreSQL и других БД параметры не нужны
+    connect_args = {}
 
-engine = create_engine(settings.database_url, connect_args={"check_same_thread": False} if settings.database_url.startswith("sqlite") else {})
+# Создаем движок базы данных
+# Для PostgreSQL URL будет вида: postgresql://user:password@host:port/database
+# Для SQLite URL будет вида: sqlite:///./data/consultations.db
+engine = create_engine(settings.database_url, connect_args=connect_args)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
