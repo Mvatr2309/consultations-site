@@ -26,7 +26,14 @@ else:
 # Создаем движок базы данных
 # Для PostgreSQL URL будет вида: postgresql://user:password@host:port/database
 # Для SQLite URL будет вида: sqlite:///./data/consultations.db
-engine = create_engine(settings.database_url, connect_args=connect_args)
+# Если используется psycopg3, SQLAlchemy автоматически определит драйвер
+# Для совместимости с psycopg3 заменяем postgresql:// на postgresql+psycopg://
+database_url = settings.database_url
+if database_url.startswith("postgresql://") and not database_url.startswith("postgresql+psycopg://"):
+    # Заменяем на postgresql+psycopg:// для использования psycopg3
+    database_url = database_url.replace("postgresql://", "postgresql+psycopg://", 1)
+
+engine = create_engine(database_url, connect_args=connect_args)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
