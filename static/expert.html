@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Эксперт: записи студентов</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <a href="/">Главная</a>
+      <a href="/student">Для студентов</a>
+      <a href="/admin">Для администратора</a>
+      <button type="button" id="logoutButton" class="btn-secondary">Выйти</button>
+    </nav>
+    <header>
+      <h1>Ваши слоты и заявки</h1>
+      <p>Выберите себя из списка ниже и посмотрите, кто записался на консультации</p>
+    </header>
+    <main>
+      <section>
+        <label for="expertSelect">Эксперт</label>
+        <div class="expert-controls">
+          <select id="expertSelect"></select>
+          <button type="button" id="expert-refresh" class="btn">Обновить</button>
+        </div>
+        <div id="expert-message"></div>
+      </section>
+      <section>
+        <h2>Записи студентов</h2>
+        <div id="expert-bookings" class="grid"></div>
+      </section>
+    </main>
+    <script type="module" src="/static/js/expert.js"></script>
+  </body>
+</html>

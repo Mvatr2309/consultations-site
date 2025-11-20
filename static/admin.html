@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Администрирование</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <a href="/">Главная</a>
+      <a href="/student">Для студентов</a>
+      <a href="/expert">Для экспертов</a>
+      <button type="button" id="logoutButton" class="btn-secondary">Выйти</button>
+    </nav>
+    <header>
+      <h1>Администрирование сервиса</h1>
+      <p>Управляйте экспертами, слотами и записями</p>
+    </header>
+    <main>
+      <section>
+        <div class="admin-header">
+          <h3>Эксперты</h3>
+          <button type="button" id="experts-refresh" class="btn">Обновить</button>
+        </div>
+        <div id="experts-list" class="grid experts"></div>
+      </section>
+      <section class="two-column">
+        <div>
+          <h3 id="expert-form-title">Добавить эксперта</h3>
+          <form id="expert-form">
+            <input type="hidden" id="expertId" />
+            <input type="text" id="expertName" placeholder="ФИО" required />
+            <input type="text" id="expertArea" placeholder="Область экспертизы" required />
+            <input type="text" id="expertContact" placeholder="Контакт" />
+            <input type="text" id="expertMeetingRoom" placeholder="Комната для встречи (ссылка)" />
+            <textarea id="expertBio" rows="3" placeholder="Короткое описание"></textarea>
+            <div class="form-actions">
+              <button type="submit" id="expertSubmit">Создать эксперта</button>
+              <button type="button" id="expertCancel" class="btn-secondary" hidden>Отменить</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <h3 id="slot-form-title">Назначить слот(ы)</h3>
+          <form id="slot-form">
+            <select id="slotExpert">
+              <option value="">Выберите эксперта</option>
+            </select>
+            <input type="datetime-local" id="slotStart" required />
+            <input type="datetime-local" id="slotEnd" />
+            <input type="number" id="slotDuration" min="5" max="240" value="30" />
+            <input type="hidden" id="slotId" />
+            <div class="form-actions">
+              <button type="submit" id="slotSubmit">Сохранить</button>
+              <button type="button" id="slotCancel" class="btn-secondary" hidden>Отменить</button>
+            </div>
+            <p class="muted small">
+              Укажите конец периода, чтобы автоматически разделить диапазон на слоты указанной длительности.
+            </p>
+          </form>
+        </div>
+      </section>
+      <section>
+        <div class="admin-header">
+          <h3>Записи студентов</h3>
+          <div class="admin-filter">
+            <select id="bookingExpertFilter">
+              <option value="">Все эксперты</option>
+            </select>
+            <button type="button" id="admin-refresh" class="btn">Обновить</button>
+          </div>
+        </div>
+        <div id="admin-message"></div>
+        <div id="admin-bookings" class="grid"></div>
+      </section>
+    </main>
+    <script type="module" src="/static/js/admin.js"></script>
+  </body>
+</html>

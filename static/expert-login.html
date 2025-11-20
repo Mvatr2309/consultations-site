@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вход эксперта</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body class="login-page">
+    <main>
+      <div class="login-card">
+        <h1>Вход эксперта</h1>
+        <p>Введите секретный код, чтобы открыть панель эксперта</p>
+        <form id="expert-login-form">
+          <input type="password" id="loginToken" placeholder="Expert token" required />
+          <button type="submit">Войти</button>
+        </form>
+        <div id="login-message"></div>
+        <p><a href="/">← на главную</a></p>
+      </div>
+    </main>
+    <script type="module" src="/static/js/expert-login.js"></script>
+  </body>
+</html>
+

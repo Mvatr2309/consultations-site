@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Запись студента</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <a href="/">Главная</a>
+      <a href="/expert">Для экспертов</a>
+      <a href="/admin">Для администратора</a>
+    </nav>
+    <header>
+      <h1>Запись на консультацию</h1>
+      <p>Выберите эксперта, подходящий слот и оставьте комментарий для консультанта</p>
+    </header>
+    <main>
+      <section>
+        <h2>Свободные слоты</h2>
+        <div class="experts-carousel-wrapper">
+          <button type="button" id="prevExpert" class="carousel-btn" disabled>‹</button>
+          <div id="experts-wrapper" class="experts-carousel"></div>
+          <button type="button" id="nextExpert" class="carousel-btn">›</button>
+        </div>
+      </section>
+      <section class="two-column">
+        <div>
+          <h3>Новая запись</h3>
+          <div id="selected-slot-info" class="selected-slot-info" hidden>
+            <p><strong>Выбранный слот:</strong> <span id="selected-slot-details"></span></p>
+          </div>
+          <form id="booking-form">
+            <input type="hidden" name="slotId" id="slotId" />
+            <input type="text" id="studentName" placeholder="Ваше имя" required />
+            <input type="email" id="studentEmail" placeholder="Почта" required />
+            <select id="vkrType" required>
+              <option value="">Выберите тип работы</option>
+              <option value="Стартап">Стартап</option>
+              <option value="Корпстартап">Корпстартап</option>
+              <option value="Исследование">Исследование</option>
+            </select>
+            <select id="magistracy" required>
+              <option value="">Выберите магистратуру</option>
+              <option value="Науки о данных">Науки о данных</option>
+              <option value="Разработка it-продукта">Разработка it-продукта</option>
+              <option value="Управление цифровым продуктом">Управление цифровым продуктом</option>
+              <option value="Прикладной анализ данных в медицинской сфере">Прикладной анализ данных в медицинской сфере</option>
+            </select>
+            <textarea id="question" rows="4" placeholder="Опишите запрос" required></textarea>
+            <input type="url" id="artifactsLink" placeholder="Приложите ссылку на артефакты" required />
+            <button type="submit" id="bookButton" disabled>Записаться</button>
+          </form>
+          <div id="booking-message"></div>
+        </div>
+        <div>
+          <h3>Отменить запись</h3>
+          <p class="muted small">При записи вам выдавался ID записи и код отмены. Вы также могли скачать файл регистрации с этой информацией.</p>
+          <form id="cancel-form">
+            <input type="number" id="cancelBookingId" placeholder="ID записи" required />
+            <input type="text" id="cancelCode" placeholder="Код отмены" required />
+            <button type="submit">Освободить слот</button>
+          </form>
+          <div id="cancel-message"></div>
+        </div>
+      </section>
+    </main>
+    <div id="booking-popup" class="popup" hidden>
+      <div class="popup-content">
+        <h3>Запись успешно создана!</h3>
+        <p><strong>ID записи:</strong> <span id="popup-booking-id"></span></p>
+        <p><strong>Код отмены:</strong> <span id="popup-cancellation-code"></span></p>
+        <button type="button" id="download-booking-info" class="btn">Скачать информацию</button>
+        <button type="button" id="close-popup" class="btn-secondary">Закрыть</button>
+      </div>
+    </div>
+    <script type="module" src="/static/js/student.js"></script>
+  </body>
+</html>
